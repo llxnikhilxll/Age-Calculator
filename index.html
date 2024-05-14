@@ -1,0 +1,52 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="main">   
+    <h2>Age Calculator</h2>
+    <div>
+        <label for="dob">Date of Birth:</label> <br>
+        <input type="number" id="day" placeholder="DD" min="1" max="31"><br>
+        <input type="number" id="month" placeholder="MM" min="1" max="12"><br>
+        <input type="number" id="year" placeholder="YYYY" min="1900"> <br>
+        <button id="calculateBtn">Calculate Age</button> <br>
+    </div>
+    
+    <div id="result"></div>
+</div>
+     
+<script>
+    function calculateAge() {
+    var day = document.getElementById("day").value;
+    var month = document.getElementById("month").value;
+    var year = document.getElementById("year").value;
+
+    // Get today's date
+    var today = new Date();
+    var currentYear = today.getFullYear();
+    var currentMonth = today.getMonth() + 1; // JavaScript months are 0-indexed
+    var currentDay = today.getDate();
+
+    // Calculate age
+    var age = currentYear - year;
+    if (currentMonth < month || (currentMonth === month && currentDay < day)) {
+        age--; // Subtract 1 if birthday hasn't occurred yet this year
+    }
+
+    // Display result
+    document.getElementById("result").innerHTML = "You are " + age + " years old.";
+}
+
+// Button click event listener
+document.getElementById("calculateBtn").addEventListener("click", calculateAge);
+
+
+</script>
+</body>
+</html>
